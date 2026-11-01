@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: resetly-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: resetly
+    ports:
+      - '5432:5432'
+    volumes:
+      - resetly_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d resetly']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  resetly_postgres_data:
+    driver: local
