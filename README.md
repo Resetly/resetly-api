@@ -25,7 +25,7 @@ Backend REST API for **Resetly**, a habit-transformation mobile app designed to 
 - **Security & Reliability**: `@fastify/helmet`, `@fastify/cors` with origin allowlist, `@nestjs/throttler` (default and strict rate limits), global `AuthGuard`
 - **Background Tasks**: `@nestjs/schedule` registered for future reminder and cleanup jobs
 - **Testing**: Jest unit tests and Supertest e2e tests
-- **Tooling**: ESLint, Prettier, Husky, lint-staged, multi-stage Dockerfile, Docker Compose
+- **Tooling**: Oxlint, Prettier, Husky, lint-staged, multi-stage Dockerfile, Docker Compose
 
 ---
 
@@ -129,8 +129,8 @@ The API will be available at: `http://localhost:3000/v1`
 | `pnpm build`          | `nest build`                            | Compile TypeScript to `dist/`                |
 | `pnpm start:prod`     | `node dist/src/main`                    | Run production build                         |
 | `pnpm typecheck`      | `tsc --noEmit`                          | Check TypeScript types without emitting code |
-| `pnpm lint`           | `eslint "{src,test}/**/*.ts"`           | Lint TypeScript codebase                     |
-| `pnpm lint:fix`       | `eslint "{src,test}/**/*.ts" --fix`     | Automatically fix linting issues             |
+| `pnpm lint`           | `oxlint --deny-warnings`                | Lint TypeScript codebase with Oxlint         |
+| `pnpm lint:fix`       | `oxlint --fix`                          | Automatically fix linting issues             |
 | `pnpm test`           | `jest`                                  | Run all Jest unit tests                      |
 | `pnpm test:e2e`       | `jest --config ./test/jest-e2e.json`    | Run Supertest end-to-end tests               |
 | `pnpm db:generate`    | `drizzle-kit generate`                  | Generate SQL migration from Drizzle schema   |

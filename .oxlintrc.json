@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "typescript/no-explicit-any": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.ts", "**/*.e2e-spec.ts", "test/**/*.ts"],
+      "rules": {
+        "unicorn/no-thenable": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["dist/**", "node_modules/**", "coverage/**", "src/database/migrations/**"]
+}
