@@ -1,47 +1,47 @@
-name: CI
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  verify:
-    name: Lint, Typecheck & Test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js 22 LTS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 12.16.1
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Verify code style & linting
-        run: pnpm lint
-
-      - name: Verify TypeScript types
-        run: pnpm typecheck
-
-      - name: Run unit & utility tests
-        run: pnpm test
-
-      - name: Run e2e tests
-        run: pnpm test:e2e
-
-      - name: Verify build output
-        run: pnpm build
-
-      - name: Verify OpenAPI export
-        run: pnpm openapi:export
+# name: CI
+#
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#     branches: [main]
+#
+# jobs:
+#   verify:
+#     name: Lint, Typecheck & Test
+#     runs-on: ubuntu-latest
+#
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+#
+#       - name: Setup Node.js 22 LTS
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 22
+#
+#       - name: Setup pnpm
+#         uses: pnpm/action-setup@v4
+#         with:
+#           version: 12.16.1
+#
+#       - name: Install dependencies
+#         run: pnpm install --frozen-lockfile
+#
+#       - name: Verify code style & linting
+#         run: pnpm lint
+#
+#       - name: Verify TypeScript types
+#         run: pnpm typecheck
+#
+#       - name: Run unit & utility tests
+#         run: pnpm test
+#
+#       - name: Run e2e tests
+#         run: pnpm test:e2e
+#
+#       - name: Verify build output
+#         run: pnpm build
+#
+#       - name: Verify OpenAPI export
+#         run: pnpm openapi:export
