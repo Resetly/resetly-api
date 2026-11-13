@@ -21,7 +21,7 @@ services:
       - key: DATABASE_URL
         sync: false # set in the Render dashboard, never committed
       - key: JWT_ACCESS_SECRET
-        sync: false
+        generateValue: true # Render generates a strong random secret; must be >=16 chars (env schema)
       - key: JWT_ACCESS_TTL
         value: 15m
       - key: CORS_ORIGINS
