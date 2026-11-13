@@ -1,0 +1,30 @@
+# Render Blueprint — deploys the existing Dockerfile as a web service.
+# Docs: https://render.com/docs/blueprint-spec
+#
+# Free plan notes:
+#   - spins down after 15 minutes without traffic, ~1 minute to wake
+#   - 750 instance-hours per workspace per calendar month
+#   - no persistent disk (not needed: Postgres lives on Neon)
+services:
+  - type: web
+    name: resetly-api
+    runtime: docker
+    plan: free
+    region: singapore # keep this next to the Neon project (ap-southeast-1)
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /v1/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false # set in the Render dashboard, never committed
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: JWT_ACCESS_TTL
+        value: 15m
+      - key: CORS_ORIGINS
+        value: https://resetly.app
+      - key: LOG_LEVEL
+        value: info

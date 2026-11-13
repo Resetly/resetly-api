@@ -10,14 +10,7 @@ import { GlobalExceptionFilter } from './common/filters/global-exception.filter'
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 
 import { HealthModule } from './modules/health/health.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { UsersModule } from './modules/users/users.module';
 import { HabitsModule } from './modules/habits/habits.module';
-import { JourneysModule } from './modules/journeys/journeys.module';
-import { CheckInsModule } from './modules/check-ins/check-ins.module';
-import { ProgressModule } from './modules/progress/progress.module';
-import { NotificationsModule } from './modules/notifications/notifications.module';
-import { AccountModule } from './modules/account/account.module';
 
 @Module({
   imports: [
@@ -38,16 +31,10 @@ import { AccountModule } from './modules/account/account.module';
       },
     ]),
 
-    // Application Modules
+    // Application Modules (only the reference CRUD slice is wired while the
+    // product structure is still being decided)
     HealthModule,
-    AuthModule,
-    UsersModule,
     HabitsModule,
-    JourneysModule,
-    CheckInsModule,
-    ProgressModule,
-    NotificationsModule,
-    AccountModule,
   ],
   providers: [
     {

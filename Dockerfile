@@ -51,8 +51,8 @@ USER node
 
 EXPOSE 3000
 
-# Container healthcheck
+# Container healthcheck (honours an injected PORT, e.g. Render's)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD curl -f http://localhost:3000/v1/health || exit 1
+  CMD curl -f http://localhost:${PORT:-3000}/v1/health || exit 1
 
 CMD ["node", "dist/src/main"]
